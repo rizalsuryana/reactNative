@@ -10,11 +10,12 @@ import SafeAreaViewExample from "./src/components/SafeAreaViewExample";
 import { SafeAreaView } from "react-native-safe-area-context";
 import KeboardAvoidingExample from "./src/components/KeboardAvoidingExample";
 import TodoList from "./src/screens/TodoList";
+import React from "react";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="gray" barStyle="default" />
+      <StatusBar backgroundColor="#000" barStyle="light-content" />
       {/* <SafeAreaView style={{ alignItems: "center" }}>
         <Text>Open up App.tsx to start working on your app</Text>
         <StatusBar style="auto" /> */}
