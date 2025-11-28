@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Text, Image, Pressable } from "react-native";
-import { ProductInterface } from "../../types/product.types";
-import { products } from "../../data/products.data";
+import { ProductInterface } from "../../../src/types/product.types";
+import { products } from "../../../src/data/products.data";
 
 export default function CardCard() {
   const [productsData, setProductData] = useState(
@@ -90,7 +90,6 @@ export default function CardCard() {
           </Pressable>
         </View>
       </View>
-      
     </View>
   );
 }

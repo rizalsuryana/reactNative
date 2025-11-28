@@ -1,22 +1,15 @@
 import "./global.css";
-import { Pressable, Text, View } from "react-native";
-import CardCard from "./src/components/nativeWind/CardCard";
-import CardScreen from "./src/components/nativeWind/CardScreen";
-import FlatListExample from "./src/components/listRendering/FlatListExample";
-import SectionListExample from "./src/components/listRendering/SectionListExample";
+import LoginScreen from "./src/screen/LoginScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
+import RegisterScreen from "./src/screen/RegisterScreen";
+import TodoListScreen from "./src/screen/TodoListScreen";
 
 export default function App() {
   return (
-    <View className="flex-1 items-center justify-center bg-purple-100">
-      {/* <Pressable className="bg-blue-600 px-6 py-3 rounded-2xl shadow-lg active:bg-blue-700">
-        <Text className="text-white font-semibold text-lg">
-          NativeWind Working!!!
-        </Text>
-      </Pressable> */}
-
-      {/* <CardScreen /> */}
-      {/* <FlatListExample /> */}
-      <SectionListExample />
-    </View>
+    <SafeAreaView className="flex-1 bg-gray-200">
+      {/* <LoginScreen /> */}
+      {/* <RegisterScreen /> */}
+      <TodoListScreen />
+    </SafeAreaView>
   );
 }
