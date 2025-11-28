@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Text, TextInput, View, Switch } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import type { TodoInterface } from "../types/todo.types";
+import type { TodoInterface } from "../../types/todo.types";
 import React from "react";
 
 export default function TodoList() {

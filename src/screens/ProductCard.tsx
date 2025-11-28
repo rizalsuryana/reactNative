@@ -11,7 +11,7 @@ export default function ProductCard() {
           />
           <View style={{ alignItems: "flex-start" }}>
             <Text style={styles.produkTex}>City</Text>
-            <Text style={styles.produkPrice}>Rp.5.000.000</Text>
+            <Text style={styles.produkPrice}>Rp.999.000.000.000.000</Text>
           </View>
         </View>
       </View>

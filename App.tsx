@@ -1,54 +1,18 @@
-import { StatusBar } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
-import ViewExample from "./src/components/intro/ViewExample";
-import ImageBackgroundExample from "./src/components/intro/ImageBackgroundExample";
-import ModalExample from "./src/components/intro/ModalExample";
-import Counter from "./src/components/intro/Counter";
-import TouchableExample from "./src/components/intro/TouchableExample";
-import ActivityIndicatorExample from "./src/components/intro/ActivityIndicatorExample";
-import SafeAreaViewExample from "./src/components/intro/SafeAreaViewExample";
-import { SafeAreaView } from "react-native-safe-area-context";
-import KeboardAvoidingExample from "./src/components/intro/KeboardAvoidingExample";
-import TodoList from "./src/screens/TodoList";
-import React from "react";
-import FixedDimentionsExample from "./src/screens/FixedDimentionsExample";
-import FlexExample from "./src/screens/FlexExample";
-import FlexExample2 from "./src/screens/FlexExample2";
-import ProfileCard from "./src/screens/ProfileCard";
-import ProductCard from "./src/screens/ProductCard";
+import "./global.css";
+import { Pressable, Text, View } from "react-native";
+import CardCard from "./src/components/nativeWind/CardCard";
+import CardScreen from "./src/components/nativeWind/CardScreen";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-      {/* <SafeAreaView style={{ alignItems: "center" }}>
-        <Text>Open up App.tsx to start working on your app</Text>
-        <StatusBar style="auto" /> */}
-      {/* exampel */}
-      {/* <ViewExample /> */}
-      {/* <ImageBackgroundExample /> */}
-      {/* <ModalExample /> */}
-      {/* <Counter /> */}
-      {/* <TouchableExample /> */}
-      {/* <ActivityIndicatorExample /> */}
-      {/* <SafeAreaViewExample /> */}
-      {/* <KeboardAvoidingExample /> */}
-      {/* </SafeAreaView> */}
-      {/* <TodoList /> */}
-      {/* <FixedDimentionsExample /> */}
-      {/* <FlexExample /> */}
-      {/* <FlexExample2 /> */}
-      {/* <ProfileCard /> */}
-      <ProductCard />
+    <View className="flex-1 items-center justify-center bg-purple-100">
+      {/* <Pressable className="bg-blue-600 px-6 py-3 rounded-2xl shadow-lg active:bg-blue-700">
+        <Text className="text-white font-semibold text-lg">
+          NativeWind Working!!!
+        </Text>
+      </Pressable> */}
+
+      <CardScreen />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-});
