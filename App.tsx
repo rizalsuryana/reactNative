@@ -2,6 +2,8 @@ import "./global.css";
 import { Pressable, Text, View } from "react-native";
 import CardCard from "./src/components/nativeWind/CardCard";
 import CardScreen from "./src/components/nativeWind/CardScreen";
+import FlatListExample from "./src/components/listRendering/FlatListExample";
+import SectionListExample from "./src/components/listRendering/SectionListExample";
 
 export default function App() {
   return (
@@ -12,7 +14,9 @@ export default function App() {
         </Text>
       </Pressable> */}
 
-      <CardScreen />
+      {/* <CardScreen /> */}
+      {/* <FlatListExample /> */}
+      <SectionListExample />
     </View>
   );
 }
