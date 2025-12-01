@@ -6,7 +6,7 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import { TodoInterface } from "../types/todo.types";
+import { TodoInterface } from "../../../src/types/todo.types";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import Checkbox from "expo-checkbox";

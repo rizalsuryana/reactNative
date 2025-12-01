@@ -6,11 +6,10 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { LoginForm } from "../../../src/types/auth.types";
 import { Ionicons } from "@expo/vector-icons";
-import { LoginForm } from "../types/auth.types";
-import { LoginProps } from "../types/navigation.type";
 
-export default function LoginScreen({ navigation }: LoginProps) {
+export default function LoginScreen() {
   const {
     control,
     handleSubmit,
@@ -25,31 +24,14 @@ export default function LoginScreen({ navigation }: LoginProps) {
   const onSubmit = (values: LoginForm) => {
     console.log("email: " + values.email);
     console.log("password" + values.password);
-    // navigation.navigate("Home");
-    // navigation.push("Home", { email: values.email });
-    // Biar gak balik ke login krn udah di replace
-    // navigation.replace("Home", { email: values.email });
-    //* untuk reset semua stack
-    // navigation.reset({
-    //   index: 0,
-    //   routes: [{ name: "Home", params: { email: values.email } }],
-    // });
-    //* Langung ke profile
-    navigation.reset({
-      index: 0,
-      routes: [
-        { name: "MainTabs", params: { screen: "Home", email: values.email } },
-      ],
-    });
   };
 
   return (
     <View className="flex-1 w-full">
       <ImageBackground
-        // source={{
-        //   uri: "https://m.media-amazon.com/images/I/21u8gLR-HeL._AC_.jpg",
-        // }}
-        source={require("../../assets/landing.png")}
+        source={{
+          uri: "https://m.media-amazon.com/images/I/21u8gLR-HeL._AC_.jpg",
+        }}
         resizeMode="cover"
         className="h-64 w-full"
       />
@@ -70,7 +52,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
                 rules={{ required: "email wajib diisi " }}
                 render={({ field: { onChange, value } }) => (
                   <View
-                    className={`flex-row items-center gap-2 border-b border-blue-500 ${
+                    className={`flex-row items-center gap-2 border-b border-[#f59b95] ${
                       errors.email && "border-[#ff0000]"
                     }`}
                   >
@@ -108,7 +90,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
                 control={control}
                 rules={{ required: "password wajib diisi" }}
                 render={({ field: { onChange, value } }) => (
-                  <View className="flex-row items-center gap-2 border-b border-blue-500">
+                  <View className="flex-row items-center gap-2 border-b border-[#f59b95]">
                     <Ionicons
                       name="lock-closed-outline"
                       size={18}
@@ -132,7 +114,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
           {/* Button */}
           <View className="mt-8">
             <Pressable
-              className="py-3 bg-blue-500 rounded-2xl items-center"
+              className="py-3 bg-[#f59b95] rounded-2xl items-center"
               onPress={handleSubmit(onSubmit)}
             >
               <Text className="text-white font-semibold text-base">

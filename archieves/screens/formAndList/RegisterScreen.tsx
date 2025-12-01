@@ -236,7 +236,7 @@ export default function RegisterScreen() {
           {/* Button */}
           <View className="mt-8">
             <Pressable
-              className="py-3 bg-blue-500 rounded-2xl items-center"
+              className="py-3 bg-[#f59b95] rounded-2xl items-center"
               onPress={handleSubmit(onSubmitHandler)}
             >
               <Text className="text-white font-semibold text-base">
