@@ -41,14 +41,10 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
       dispatch(loginSuccess({ token, customer }));
 
-      if (customer.role === "admin") {
-        navigation.reset({ index: 0, routes: [{ name: "AdminDashboard" }] });
-      } else {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: "MainTabs", params: { screen: "Home" } }],
-        });
-      }
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "MainTabs", params: { screen: "Home" } }],
+      });
     } catch (error) {
       console.log(error);
       setLoginError("Wrong email or password");
