@@ -1,23 +1,20 @@
-import { ActivityIndicator, Text } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import "./global.css";
 import { SafeAreaView } from "react-native-safe-area-context";
-import HomeScreen from "./src/screen/HomeScreen";
 import Navigation from "./src/navigation";
 import WellcomeScreen from "./src/screen/WellcomeScreen";
 import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { View } from "react-native";
+import { Provider } from "react-redux";
+import { store } from "./src/store/store";
+import { restoreAuth } from "./src/store/slice/authSlice";
+import AuthLoader from "./src/components/AuthLoader";
 
 export default function App() {
   const [hasSeenOnBoarding, setHasSeenOnBoarding] = useState<boolean | null>(
     null
   );
   const [loading, setLoading] = useState(true);
-
-  const handleFinishOnBoarding = async () => {
-    await AsyncStorage.setItem("hasSeenOnBoarding", "true");
-    setHasSeenOnBoarding(true);
-  };
 
   useEffect(() => {
     const checkOnboarding = async () => {
@@ -33,6 +30,11 @@ export default function App() {
     checkOnboarding();
   }, []);
 
+  const handleFinishOnBoarding = async () => {
+    await AsyncStorage.setItem("hasSeenOnBoarding", "true");
+    setHasSeenOnBoarding(true);
+  };
+
   if (loading || hasSeenOnBoarding === null) {
     return (
       <View className="flex-1 items-center justify-center bg-blue-500">
@@ -40,14 +42,18 @@ export default function App() {
       </View>
     );
   }
+
   if (!hasSeenOnBoarding) {
     return <WellcomeScreen onContinue={handleFinishOnBoarding} />;
   }
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-200">
-      <Navigation />
-      {/* <WellcomeScreen /> */}
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView className="flex-1 bg-gray-200">
+        <AuthLoader>
+          <Navigation />
+        </AuthLoader>
+      </SafeAreaView>
+    </Provider>
   );
 }

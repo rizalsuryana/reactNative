@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 export const api = axios.create({
@@ -6,3 +7,23 @@ export const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+api.interceptors.request.use(async (config) => {
+  try {
+    const token = await AsyncStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  return config;
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.log("APi Error :", error.response?.data || error.message);
+  }
+);

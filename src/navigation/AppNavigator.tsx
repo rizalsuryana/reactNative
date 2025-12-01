@@ -15,7 +15,7 @@ export default function AppNavigator() {
       screenOptions={{ headerShown: false }}
       /* bisa stack mana yang akan jadi initial root */
       // initialRouteName="Login"
-      initialRouteName="MainTabs"
+      initialRouteName="Login"
     >
       {/* selain urutan stack */}
       <Stack.Screen name="Login" component={LoginScreen} />

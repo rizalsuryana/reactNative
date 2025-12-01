@@ -10,8 +10,9 @@ import {
 import { RegisterType } from "../types/auth.types";
 import { Ionicons, SimpleLineIcons } from "@expo/vector-icons";
 import { Checkbox } from "expo-checkbox";
+import { RegisterProps } from "../types/navigation.type";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }: RegisterProps) {
   const {
     control,
     handleSubmit,
@@ -33,9 +34,7 @@ export default function RegisterScreen() {
   return (
     <ScrollView className="flex-1 w-full">
       <ImageBackground
-        source={{
-          uri: "https://m.media-amazon.com/images/I/21u8gLR-HeL._AC_.jpg",
-        }}
+        source={require("../../assets/landing.png")}
         resizeMode="cover"
         className="h-64 w-full"
       />
@@ -56,7 +55,7 @@ export default function RegisterScreen() {
                 rules={{ required: "Full Name wajib diisi " }}
                 render={({ field: { onChange, value } }) => (
                   <View
-                    className={`flex-row items-center gap-2 border-b border-[#f59b95] ${
+                    className={`flex-row items-center gap-2 border-b border-[##2196F3] ${
                       errors.fullName && "border-[#ff0000]"
                     }`}
                   >
@@ -94,7 +93,7 @@ export default function RegisterScreen() {
                 rules={{ required: "email wajib diisi " }}
                 render={({ field: { onChange, value } }) => (
                   <View
-                    className={`flex-row items-center gap-2 border-b border-[#f59b95] ${
+                    className={`flex-row items-center gap-2 border-b border-[##2196F3] ${
                       errors.email && "border-[#ff0000]"
                     }`}
                   >
@@ -133,7 +132,7 @@ export default function RegisterScreen() {
                 rules={{ required: "password wajib diisi" }}
                 render={({ field: { onChange, value } }) => (
                   <View
-                    className={`flex-row items-center gap-2 border-b border-[#f59b95] ${
+                    className={`flex-row items-center gap-2 border-b border-[##2196F3] ${
                       errors.password && "border-[#ff0000]"
                     }`}
                   >
@@ -176,7 +175,7 @@ export default function RegisterScreen() {
                 }}
                 render={({ field: { onChange, value } }) => (
                   <View
-                    className={`flex-row items-center gap-2 border-b border-[#f59b95] ${
+                    className={`flex-row items-center gap-2 border-b border-[##2196F3] ${
                       errors.confirmPassword && "border-[#ff0000]"
                     }`}
                   >
@@ -219,7 +218,7 @@ export default function RegisterScreen() {
                     <Checkbox
                       value={value}
                       onValueChange={onChange}
-                      color={value ? "#f59b95" : undefined}
+                      color={value ? "##2196F3" : undefined}
                     />
                     <Text>I agree to Terms & Privacy</Text>
                   </View>
@@ -247,7 +246,9 @@ export default function RegisterScreen() {
         </View>
         <View className="mt-5 flex-row gap-x-2">
           <Text>Already have an account?</Text>
-          <Text className="text-rose-400">Sign In</Text>
+          <Pressable onPress={() => navigation.navigate("Login")}>
+            <Text className="text-blue-500 font-bold">Sign In</Text>
+          </Pressable>
         </View>
       </View>
     </ScrollView>

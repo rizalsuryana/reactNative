@@ -15,3 +15,7 @@ export type MainTabParamList = {
 
 export type LoginProps = NativeStackScreenProps<RootStackParamList, "Login">;
 export type HomeProps = NativeStackScreenProps<RootStackParamList, "MainTabs">;
+export type RegisterProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Register"
+>;
