@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   View,
@@ -42,12 +41,14 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
       dispatch(loginSuccess({ token, customer }));
 
-      navigation.reset({
-        index: 0,
-        routes: [
-          { name: "MainTabs", params: { screen: "Home", email: values.email } },
-        ],
-      });
+      if (customer.role === "admin") {
+        navigation.reset({ index: 0, routes: [{ name: "AdminDashboard" }] });
+      } else {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "MainTabs", params: { screen: "Home" } }],
+        });
+      }
     } catch (error) {
       console.log(error);
       setLoginError("Wrong email or password");
@@ -59,7 +60,6 @@ export default function LoginScreen({ navigation }: LoginProps) {
       className="flex-1"
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      {/* ini work dengan keyboar avoiding.... */}
       <KeyboardAwareScrollView
         contentContainerStyle={{ flexGrow: 1 }}
         enableOnAndroid={true}
@@ -85,6 +85,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
                     {loginError}
                   </Text>
                 )}
+
                 {/* email */}
                 <View className="mb-4">
                   <Text className="text-sm font-semibold text-[#555] mb-1">
@@ -94,37 +95,38 @@ export default function LoginScreen({ navigation }: LoginProps) {
                     name="email"
                     control={control}
                     rules={{
-                      required: "email is required",
+                      required: "Email is required",
                       pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, // regex cek format email
-                        message: "invalid email format",
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Invalid email format",
                       },
                     }}
                     render={({ field: { onChange, value } }) => (
                       <View
-                        className={`flex-row items-center gap-2 border-b border-blue-500 ${
-                          errors.email && "border-[#ff0000]"
-                        }`}
+                        className="flex-row items-center gap-2 border-b"
+                        style={{
+                          borderColor: errors.email ? "red" : "blue",
+                        }}
                       >
                         <Ionicons
                           name="mail-outline"
                           size={18}
-                          color={`${errors.email ? "#ff0000" : "#999"}`}
+                          color={errors.email ? "red" : "#999"}
                         />
-
                         <TextInput
                           value={value}
                           onChangeText={onChange}
                           placeholder="email@example.com"
                           placeholderTextColor="#999"
-                          className="text-base"
+                          className="text-base flex-1"
+                          autoCapitalize="none"
+                          keyboardType="email-address"
                         />
                       </View>
                     )}
                   />
-
                   {errors.email && (
-                    <Text className="text-xs text-[#ff0000] mt-1">
+                    <Text className="text-xs text-red-500 mt-1">
                       {errors.email.message}
                     </Text>
                   )}
@@ -138,26 +140,36 @@ export default function LoginScreen({ navigation }: LoginProps) {
                   <Controller
                     name="password"
                     control={control}
-                    rules={{ required: "password is required" }}
+                    rules={{ required: "Password is required" }}
                     render={({ field: { onChange, value } }) => (
-                      <View className="flex-row items-center gap-2 border-b border-blue-500">
+                      <View
+                        className="flex-row items-center gap-2 border-b"
+                        style={{
+                          // biar gak kedip2 saat input
+                          borderColor: errors.password ? "red" : "blue",
+                        }}
+                      >
                         <Ionicons
                           name="lock-closed-outline"
                           size={18}
-                          color="#999"
+                          color={errors.password ? "red" : "#999"}
                         />
-
                         <TextInput
                           value={value}
                           secureTextEntry
                           onChangeText={onChange}
                           placeholder="Enter your password"
                           placeholderTextColor="#999"
-                          className="text-base"
+                          className="text-base flex-1"
                         />
                       </View>
                     )}
                   />
+                  {errors.password && (
+                    <Text className="text-xs text-red-500 mt-1">
+                      {errors.password.message}
+                    </Text>
+                  )}
                 </View>
               </View>
 
@@ -172,9 +184,9 @@ export default function LoginScreen({ navigation }: LoginProps) {
                   </Text>
                 </Pressable>
                 <View className="mt-5 flex-row gap-x-2">
-                  <Text>Already have an account?</Text>
+                  <Text>Don't have an account?</Text>
                   <Pressable onPress={() => navigation.navigate("Register")}>
-                    <Text className="text-blue-500 font-bold">Sign In</Text>
+                    <Text className="text-blue-500 font-bold">Register</Text>
                   </Pressable>
                 </View>
               </View>
